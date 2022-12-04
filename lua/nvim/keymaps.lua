@@ -55,7 +55,7 @@ keymap("v", ">", ">gv", opts)
 
 -- Formatting
 keymap("n", "<leader>lf", ":lua vim.lsp.buf.format()<CR>", opts)
-keymap("v", "<leader>lf", ":vim.lsp.buf.range_formatting()<CR>", opts)
+keymap("v", "<leader>lf", ":lua vim.lsp.buf.format()<CR>", opts)
 
 -- Plugins --
 
@@ -63,10 +63,9 @@ keymap("v", "<leader>lf", ":vim.lsp.buf.range_formatting()<CR>", opts)
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
 
 -- Telescope
-keymap("n", "<leader>ff", ":Telescope find_files<CR>", opts)
-keymap("n", "<leader>ft", ":Telescope live_grep<CR>", opts)
-keymap("n", "<leader>fp", ":Telescope projects<CR>", opts)
-keymap("n", "<leader>fb", ":Telescope buffers<CR>", opts)
+keymap("n", "<leader>f", ":Telescope find_files<CR>", opts)
+keymap("n", "<leader>st", ":Telescope live_grep<CR>", opts)
+keymap("n", "<leader>sb", ":Telescope buffers<CR>", opts)
 
 -- ToggleTerm
 keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
