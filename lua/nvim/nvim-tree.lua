@@ -35,6 +35,9 @@ nvim_tree.setup({
 			error = "",
 		},
 	},
+	filters = {
+		dotfiles = false,
+	},
 	view = {
 		width = 30,
 		side = "left",
