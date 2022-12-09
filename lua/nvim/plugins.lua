@@ -97,6 +97,7 @@ return packer.startup(function(use)
 
 	-- Random
 	use({ "chrsm/impulse.nvim" })
+	use({ "norcalli/nvim-colorizer.lua" })
 
 	use({ "jbyuki/venn.nvim" })
 
