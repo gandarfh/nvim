@@ -98,7 +98,7 @@ return packer.startup(function(use)
 	-- Random
 	use({ "chrsm/impulse.nvim" })
 	use({ "norcalli/nvim-colorizer.lua" })
-
+	use({ "andweeb/presence.nvim" })
 	use({ "jbyuki/venn.nvim" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
