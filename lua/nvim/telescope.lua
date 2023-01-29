@@ -8,10 +8,12 @@ local actions = require("telescope.actions")
 local function get_pickers(actions)
 	return {
 		find_files = {
+			find_command = { "rg", "--files", "--no-ignore", "--hidden", "--glob", "!**/.git/*" },
 			theme = "dropdown",
 			hidden = true,
 		},
 		live_grep = {
+			hidden = true,
 			--@usage don't include the filename in the search results
 			only_sort_text = true,
 			theme = "dropdown",
@@ -65,10 +67,9 @@ telescope.setup({
 	pickers = get_pickers(actions),
 	defaults = {
 		prompt_prefix = " ",
-		selection_caret = " ",
+		selection_caret = "> ",
 		path_display = { "smart" },
 		file_ignore_patterns = { ".git/", "node_modules" },
-
 		mappings = {
 			i = {
 				["<Down>"] = actions.cycle_history_next,
