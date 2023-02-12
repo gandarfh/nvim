@@ -25,6 +25,11 @@ nvim_tree.setup({
 			},
 		},
 	},
+	git = {
+		enable = true,
+		ignore = false,
+		timeout = 400,
+	},
 	diagnostics = {
 		enable = true,
 		show_on_dirs = true,

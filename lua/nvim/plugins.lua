@@ -58,6 +58,8 @@ return packer.startup(function(use)
 	use({ "lewis6991/impatient.nvim" })
 	use({ "lukas-reineke/indent-blankline.nvim" })
 	use({ "tpope/vim-surround" })
+	use({ "pangloss/vim-javascript" })
+	use({ "windwp/nvim-ts-autotag" })
 
 	-- Colorschemes
 	use({ "gandarfh/viscond" })
@@ -94,6 +96,7 @@ return packer.startup(function(use)
 	use({ "mfussenegger/nvim-dap" })
 	use({ "rcarriga/nvim-dap-ui" })
 	use({ "ravenxrz/DAPInstall.nvim" })
+	use({ "leoluz/nvim-dap-go" })
 
 	-- Random
 	use({ "chrsm/impulse.nvim" })

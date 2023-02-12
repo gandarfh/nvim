@@ -34,13 +34,13 @@ keymap("n", "<S-l>", ":bnext<CR>", opts)
 keymap("n", "<S-h>", ":bprevious<CR>", opts)
 
 -- Close buffers
-keymap("n", "<leader>c>", "<cmd>Bdelete!<CR>", opts)
+keymap("n", "<leader>c", "<cmd>Bdelete!<CR>", opts)
 
 -- Clear highlights
 keymap("n", "<leader>h", "<cmd>nohlsearch<CR>", opts)
 
--- Better paste
-keymap("v", "p", '"_dP', opts)
+-- -- Better paste
+-- keymap("v", "p", '"_dP', opts)
 
 -- Insert --
 -- Press jk fast to enter
@@ -54,8 +54,25 @@ keymap("v", "<", "<gv", opts)
 keymap("v", ">", ">gv", opts)
 
 -- Formatting
+function Format_range_operator()
+	local old_func = vim.go.operatorfunc
+	_G.op_func_formatting = function()
+		local opts = {
+			range = {
+				["start"] = vim.api.nvim_buf_get_mark(0, "["),
+				["end"] = vim.api.nvim_buf_get_mark(0, "]"),
+			},
+		}
+		vim.lsp.buf.format(opts)
+		vim.go.operatorfunc = old_func
+		_G.op_func_formatting = nil
+	end
+	vim.go.operatorfunc = "v:lua.op_func_formatting"
+	vim.api.nvim_feedkeys("g@", "n", false)
+end
+
 keymap("n", "<leader>lf", ":lua vim.lsp.buf.format()<CR>", opts)
-keymap("v", "<leader>lf", ":lua vim.lsp.buf.format()<CR>", opts)
+keymap("v", "<leader>lf", "<cmd>lua Format_range_operator()<CR>", opts)
 
 -- Plugins --
 

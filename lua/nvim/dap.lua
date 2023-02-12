@@ -1,3 +1,5 @@
+local keymap = vim.keymap.set
+
 local dap_status_ok, dap = pcall(require, "dap")
 if not dap_status_ok then
 	return
@@ -10,6 +12,11 @@ end
 
 local dap_install_status_ok, dap_install = pcall(require, "dap-install")
 if not dap_install_status_ok then
+	return
+end
+
+local dap_go_ok, dap_go = pcall(require, "dap-go")
+if not dap_go_ok then
 	return
 end
 
@@ -60,6 +67,22 @@ dapui.setup({
 	},
 })
 
+dap.adapters.go = {
+	type = "executable",
+	command = "node",
+	args = { os.getenv("HOME") .. "/golang/vscode-go/dist/debugAdapter.js" },
+}
+dap.configurations.go = {
+	{
+		type = "go",
+		name = "Debug",
+		request = "launch",
+		showLog = false,
+		program = "${file}",
+		dlvToolPath = vim.fn.exepath("dlv"), -- Adjust to where delve is installed
+	},
+}
+
 vim.fn.sign_define("DapBreakpoint", { text = "", texthl = "DiagnosticSignError", linehl = "", numhl = "" })
 
 dap.listeners.after.event_initialized["dapui_config"] = function()
@@ -72,4 +95,25 @@ end
 
 dap.listeners.before.event_exited["dapui_config"] = function()
 	dapui.close()
+end
+
+local keymap_restore = {}
+dap.listeners.after["event_initialized"]["me"] = function()
+	for _, buf in pairs(vim.api.nvim_list_bufs()) do
+		local keymaps = vim.api.nvim_buf_get_keymap(buf, "n")
+		for _, key in pairs(keymaps) do
+			if key.lhs == "K" then
+				table.insert(keymap_restore, key)
+				vim.api.nvim_buf_del_keymap(buf, "n", "K")
+			end
+		end
+	end
+	keymap("n", "K", '<Cmd>lua require("dap.ui.widgets").hover()<CR>', { silent = true })
+end
+
+dap.listeners.after["event_terminated"]["me"] = function()
+	for _, key in pairs(keymap_restore) do
+		vim.api.nvim_buf_set_keymap(key.buffer, key.mode, key.lhs, key.rhs, { silent = key.silent == 1 })
+	end
+	keymap_restore = {}
 end
