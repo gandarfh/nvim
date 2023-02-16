@@ -55,20 +55,20 @@ keymap("v", ">", ">gv", opts)
 
 -- Formatting
 function Format_range_operator()
-	local old_func = vim.go.operatorfunc
-	_G.op_func_formatting = function()
-		local opts = {
-			range = {
-				["start"] = vim.api.nvim_buf_get_mark(0, "["),
-				["end"] = vim.api.nvim_buf_get_mark(0, "]"),
-			},
-		}
-		vim.lsp.buf.format(opts)
-		vim.go.operatorfunc = old_func
-		_G.op_func_formatting = nil
-	end
-	vim.go.operatorfunc = "v:lua.op_func_formatting"
-	vim.api.nvim_feedkeys("g@", "n", false)
+  local old_func = vim.go.operatorfunc
+  _G.op_func_formatting = function()
+    local opts = {
+        range = {
+            ["start"] = vim.api.nvim_buf_get_mark(0, "["),
+            ["end"] = vim.api.nvim_buf_get_mark(0, "]"),
+        },
+    }
+    vim.lsp.buf.format(opts)
+    vim.go.operatorfunc = old_func
+    _G.op_func_formatting = nil
+  end
+  vim.go.operatorfunc = "v:lua.op_func_formatting"
+  vim.api.nvim_feedkeys("g@", "n", false)
 end
 
 keymap("n", "<leader>lf", ":lua vim.lsp.buf.format()<CR>", opts)
