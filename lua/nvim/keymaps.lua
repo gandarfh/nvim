@@ -58,10 +58,10 @@ function Format_range_operator()
   local old_func = vim.go.operatorfunc
   _G.op_func_formatting = function()
     local opts = {
-        range = {
-            ["start"] = vim.api.nvim_buf_get_mark(0, "["),
-            ["end"] = vim.api.nvim_buf_get_mark(0, "]"),
-        },
+      range = {
+        ["start"] = vim.api.nvim_buf_get_mark(0, "["),
+        ["end"] = vim.api.nvim_buf_get_mark(0, "]"),
+      },
     }
     vim.lsp.buf.format(opts)
     vim.go.operatorfunc = old_func
@@ -75,6 +75,7 @@ keymap("n", "<leader>lf", ":lua vim.lsp.buf.format()<CR>", opts)
 keymap("v", "<leader>lf", "<cmd>lua Format_range_operator()<CR>", opts)
 
 -- Plugins --
+keymap("n", "<leader>lr", '<cmd>lua require("renamer").rename()<cr>', opts)
 
 -- NvimTree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)
