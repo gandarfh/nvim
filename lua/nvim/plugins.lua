@@ -104,25 +104,9 @@ return packer.startup(function(use)
   use({ "leoluz/nvim-dap-go" })
 
   -- Random
-  use "zbirenbaum/copilot-cmp"
-  use {
-    "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
-    event = "InsertEnter",
-    config = function()
-      require("copilot").setup({})
-    end,
-  }
   use({ "chrsm/impulse.nvim" })
   use({ "norcalli/nvim-colorizer.lua" })
   use({ "jbyuki/venn.nvim" })
-  use({
-    "giusgad/pets.nvim",
-    requires = {
-      "edluffy/hologram.nvim",
-      "MunifTanjim/nui.nvim",
-    },
-  })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

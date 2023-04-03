@@ -20,7 +20,6 @@ require("nvim.indentline")
 require("nvim.lsp")
 require("nvim.dap")
 require("nvim.venn")
-require("nvim.copilot")
 require("impulse").setup({})
 
 
