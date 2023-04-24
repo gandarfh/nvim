@@ -6,6 +6,7 @@ local opts = { silent = true }
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
+vim.g.maplocalleader = " "
 
 -- Modes
 --   normal_mode = "n",
@@ -75,7 +76,7 @@ keymap("n", "<leader>lf", ":lua vim.lsp.buf.format()<CR>", opts)
 keymap("v", "<leader>lf", "<cmd>lua Format_range_operator()<CR>", opts)
 
 -- Plugins --
-keymap("n", "<leader>lr", '<cmd>lua require("renamer").rename()<cr>', opts)
+keymap("n", "<leader>lr", '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
 
 -- NvimTree
 keymap("n", "<leader>e", ":NvimTreeToggle<CR>", opts)

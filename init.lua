@@ -1,5 +1,4 @@
 require("nvim.impatient")
-require("nvim.rename")
 require("nvim.options")
 require("nvim.keymaps")
 require("nvim.plugins")

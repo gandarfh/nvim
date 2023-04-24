@@ -4,6 +4,7 @@ local servers = {
 	"html",
   "gopls",
   "rust_analyzer",
+  "clojure_lsp",
 	"tsserver",
 	"pyright",
 	"bashls",
