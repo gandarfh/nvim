@@ -48,6 +48,7 @@ return packer.startup(function(use)
   use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
   use({ "windwp/nvim-autopairs" }) -- Autopairs, integrates with both cmp and treesitter
   use({ "numToStr/Comment.nvim" })
+  use({ "JoosepAlviste/nvim-ts-context-commentstring" })
   use({ "kyazdani42/nvim-web-devicons" })
   use({ "kyazdani42/nvim-tree.lua" })
   use({ "akinsho/bufferline.nvim" })
@@ -59,8 +60,7 @@ return packer.startup(function(use)
   use({ "lukas-reineke/indent-blankline.nvim" })
   use({ "tpope/vim-surround" })
   use({ "pangloss/vim-javascript" })
-  use({ "windwp/nvim-ts-autotag" })
-  use({ 'Olical/conjure' })
+  -- use({ 'Olical/conjure' })
 
   -- Colorschemes
   use({ "gandarfh/viscond" })
@@ -98,6 +98,11 @@ return packer.startup(function(use)
   use({ "rcarriga/nvim-dap-ui" })
   use({ "ravenxrz/DAPInstall.nvim" })
   use({ "leoluz/nvim-dap-go" })
+
+  -- Frontend
+  use({ "alvan/vim-closetag" })
+  use({ "pangloss/vim-javascript" })
+  use({ "windwp/nvim-ts-autotag" })
 
   -- Random
   use({ "chrsm/impulse.nvim" })
