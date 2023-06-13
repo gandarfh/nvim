@@ -13,9 +13,7 @@ if fn.empty(fn.glob(install_path)) > 0 then
   })
   print("Installing packer close and reopen Neovim...")
   vim.cmd([[packadd packer.nvim]])
-end
-
--- Autocommand that reloads neovim whenever you save the plugins.lua file
+end -- Autocommand that reloads neovim whenever you save the plugins.lua file
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -60,7 +58,9 @@ return packer.startup(function(use)
   use({ "lukas-reineke/indent-blankline.nvim" })
   use({ "tpope/vim-surround" })
   use({ "pangloss/vim-javascript" })
-  -- use({ 'Olical/conjure' })
+  use({ "windwp/nvim-ts-autotag" })
+  use({ 'Olical/conjure' })
+  use({ "windwp/nvim-spectre" })
 
   -- Colorschemes
   use({ "gandarfh/viscond" })

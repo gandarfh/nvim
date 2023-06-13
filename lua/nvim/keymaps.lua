@@ -6,7 +6,7 @@ local opts = { silent = true }
 --Remap space as leader key
 keymap("", "<Space>", "<Nop>", opts)
 vim.g.mapleader = " "
-vim.g.maplocalleader = " "
+vim.g.maplocalleader = ";"
 
 -- Modes
 --   normal_mode = "n",
@@ -108,3 +108,6 @@ keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
 
 -- toggle keymappings for venn using <leader>v
 keymap("n", "<leader>v", "<cmd>lua Toggle_venn()<CR><cr>", opts)
+
+-- Find Replace
+keymap("n", "<leader>r", "<cmd>lua require('spectre').open()<cr>", opts)
