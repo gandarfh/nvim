@@ -57,8 +57,6 @@ return packer.startup(function(use)
   use({ "lewis6991/impatient.nvim" })
   use({ "lukas-reineke/indent-blankline.nvim" })
   use({ "tpope/vim-surround" })
-  use({ "pangloss/vim-javascript" })
-  use({ "windwp/nvim-ts-autotag" })
   use({ 'Olical/conjure' })
   use({ "windwp/nvim-spectre" })
 
@@ -103,6 +101,9 @@ return packer.startup(function(use)
   use({ "alvan/vim-closetag" })
   use({ "pangloss/vim-javascript" })
   use({ "windwp/nvim-ts-autotag" })
+
+  -- F#
+  use({ "ionide/Ionide-vim" })
 
   -- Random
   use({ "chrsm/impulse.nvim" })
