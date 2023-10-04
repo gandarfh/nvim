@@ -8,6 +8,12 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
   end,
 })
 
+-- dont list quickfix buffers
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+  pattern = "*.fs,*.fsx,*.fsi",
+  command = [[set filetype=fsharp]]
+})
+
 vim.api.nvim_create_autocmd({ "FileType" }, {
   pattern = { "gitcommit", "markdown" },
   callback = function()

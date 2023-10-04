@@ -15,13 +15,28 @@ null_ls.setup({
     formatting.black.with({ extra_args = { "--fast" } }),
     formatting.goimports,
     formatting.stylua,
-    formatting.eslint_d,
+    formatting.prettierd,
+    formatting.ocamlformat,
     formatting.prettierd,
     formatting.google_java_format,
     diagnostics.flake8,
     diagnostics.eslint_d,
   },
 })
+
+-- require 'lspconfig'.eslint.setup {
+--   -- Copied from nvim-lspconfig/lua/lspconfig/server_conigurations/eslint.js
+--   root_dir = util.root_pattern(
+--     '.eslintrc',
+--     '.eslintrc.js',
+--     '.eslintrc.cjs',
+--     '.eslintrc.yaml',
+--     '.eslintrc.yml',
+--     '.eslintrc.json'
+--   -- Disabled to prevent "No ESLint configuration found" exceptions
+--   -- 'package.json',
+--   ),
+-- }
 
 require 'lspconfig'.lua_ls.setup {
   settings = {
