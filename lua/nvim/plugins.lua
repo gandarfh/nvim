@@ -43,8 +43,8 @@ packer.init({
 return packer.startup(function(use)
   -- My plugins here
   use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
-  use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
-  use({ "windwp/nvim-autopairs" }) -- Autopairs, integrates with both cmp and treesitter
+  use({ "nvim-lua/plenary.nvim" })  -- Useful lua functions used by lots of plugins
+  use({ "windwp/nvim-autopairs" })  -- Autopairs, integrates with both cmp and treesitter
   use({ "numToStr/Comment.nvim" })
   use({ "JoosepAlviste/nvim-ts-context-commentstring" })
   use({ "kyazdani42/nvim-web-devicons" })
@@ -57,27 +57,27 @@ return packer.startup(function(use)
   use({ "lewis6991/impatient.nvim" })
   use({ "lukas-reineke/indent-blankline.nvim" })
   use({ "tpope/vim-surround" })
-  use({ 'Olical/conjure' })
+  -- use({ 'Olical/conjure' })
   use({ "windwp/nvim-spectre" })
 
   -- Colorschemes
   use({ "gandarfh/viscond" })
 
   -- cmp plugins
-  use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
-  use({ "hrsh7th/cmp-buffer" }) -- buffer completions
-  use({ "hrsh7th/cmp-path" }) -- path completions
+  use({ "hrsh7th/nvim-cmp" })         -- The completion plugin
+  use({ "hrsh7th/cmp-buffer" })       -- buffer completions
+  use({ "hrsh7th/cmp-path" })         -- path completions
   use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
   use({ "hrsh7th/cmp-nvim-lsp" })
   use({ "hrsh7th/cmp-nvim-lua" })
 
   -- snippets
-  use({ "L3MON4D3/LuaSnip" }) --snippet engine
+  use({ "L3MON4D3/LuaSnip" })             --snippet engine
   use({ "rafamadriz/friendly-snippets" }) -- a bunch of snippets to use
 
   -- LSP
   use({ "williamboman/nvim-lsp-installer" }) -- simple to use language server installer
-  use({ "neovim/nvim-lspconfig" }) -- enable LSP
+  use({ "neovim/nvim-lspconfig" })           -- enable LSP
   use({ "williamboman/mason.nvim" })
   use({ "williamboman/mason-lspconfig.nvim" })
   use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
