@@ -12,6 +12,7 @@ local servers = {
   "jsonls",
   "yamlls",
   "fsautocomplete",
+  "terraformls",
   "hls",
   "tflint"
 }
@@ -57,3 +58,12 @@ for _, server in pairs(servers) do
 
   lspconfig[server].setup(opts)
 end
+
+lspconfig.terraformls.setup {}
+
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*.tf", "*.tfvars" },
+  callback = function()
+    vim.lsp.buf.format()
+  end,
+})
