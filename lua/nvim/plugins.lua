@@ -59,6 +59,7 @@ return packer.startup(function(use)
   use({ "tpope/vim-surround" })
   use({ 'Olical/conjure' })
   use({ "windwp/nvim-spectre" })
+  use({ "folke/flash.nvim" })
 
   -- Colorschemes
   use({ "gandarfh/viscond" })
@@ -110,6 +111,7 @@ return packer.startup(function(use)
   use({ "norcalli/nvim-colorizer.lua" })
   use({ "jbyuki/venn.nvim" })
   use({ "tpope/vim-dadbod" })
+  use({ "andweeb/presence.nvim" })
 
   -- Automatically set up your configuration after cloning packer.nvim
   -- Put this at the end after all plugins

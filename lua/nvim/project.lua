@@ -7,6 +7,14 @@ project.setup({
   detection_methods = { "pattern" },
   -- patterns used to detect root dir, when **"pattern"** is in detection_methods
   patterns = { ".git", "Makefile", "package.json" },
+
+  sync_root_with_cwd = true,
+
+  respect_buf_cwd = true,
+  update_focused_file = {
+    enable = true,
+    update_root = true
+  },
 })
 
 local tele_status_ok, telescope = pcall(require, "telescope")
