@@ -1,13 +1,22 @@
-local status_ok, hop = pcall(require, "flash")
+local status_ok, flash = pcall(require, "flash")
 if not status_ok then
-  return
+	return
 end
 
--- hop.setup()
+local keymap = vim.keymap.set
 
--- hop.jump({
---   remote_op = {
---     restore = true,
---     motion = true,
---   },
--- })
+keymap("n", "s", function()
+	flash.jump()
+end)
+keymap("n", "S", function()
+	flash.treesitter()
+end)
+keymap("n", "r", function()
+	flash.remote()
+end)
+keymap("n", "R", function()
+	flash.treesitter_search()
+end)
+keymap("n", "<c-s>", function()
+	flash.toggle()
+end)
