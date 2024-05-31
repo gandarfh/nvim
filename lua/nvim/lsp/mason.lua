@@ -16,6 +16,9 @@ local servers = {
 	"terraformls",
 	"hls",
 	"tflint",
+	"elixirls",
+	"rescriptls",
+	"tailwindcss",
 }
 
 local settings = {
@@ -62,6 +65,7 @@ end
 
 lspconfig.terraformls.setup({})
 
+lspconfig.elixirls.setup({})
 -- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
 -- 	pattern = { "*.tf", "*.tfvars" },
 -- 	callback = function()

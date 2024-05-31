@@ -8,7 +8,16 @@ local actions = require("telescope.actions")
 local function get_pickers(actions)
 	return {
 		find_files = {
-			find_command = { "rg", "--files", "--no-ignore", "--hidden", "--glob", "!**/.git/*" },
+			find_command = {
+				"rg",
+				"--files",
+				"--no-ignore",
+				"--hidden",
+				"--glob",
+				"!**/.git/*",
+				"--glob",
+				"!**/.next/*",
+			},
 			theme = "dropdown",
 			hidden = true,
 		},

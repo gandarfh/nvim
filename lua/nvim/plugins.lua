@@ -57,7 +57,7 @@ return packer.startup(function(use)
 	use({ "lewis6991/impatient.nvim" })
 	use({ "lukas-reineke/indent-blankline.nvim" })
 	use({ "tpope/vim-surround" })
-	use({ "Olical/conjure" })
+	-- use({ "Olical/conjure" })
 	use({ "windwp/nvim-spectre" })
 	use({ "folke/flash.nvim" })
 
@@ -82,6 +82,8 @@ return packer.startup(function(use)
 	use({ "williamboman/mason.nvim" })
 	use({ "williamboman/mason-lspconfig.nvim" })
 	use({ "jose-elias-alvarez/null-ls.nvim" }) -- for formatters and linters
+	use({ "rescript-lang/vim-rescript" })
+	use({ "nkrkv/nvim-treesitter-rescript" })
 
 	-- Telescope
 	use({ "nvim-telescope/telescope.nvim" })
@@ -106,9 +108,15 @@ return packer.startup(function(use)
 	-- F#
 	use({ "ionide/Ionide-vim" })
 
+	-- Elixir
+	-- use({ "elixir-tools/elixir-tools.nvim", tag = "stable", requires = { "nvim-lua/plenary.nvim" } })
+
 	-- Random
 	use({ "norcalli/nvim-colorizer.lua" })
-	use({ "nvim-neorg/neorg" })
+	-- use({
+	-- 	"nvim-neorg/neorg",
+	-- 	build = ":Neorg sync-parsers",
+	-- })
 	use({ "jbyuki/venn.nvim" })
 	-- use({ "andweeb/presence.nvim" })
 

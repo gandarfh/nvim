@@ -19,9 +19,10 @@ null_ls.setup({
 		formatting.eslint_d,
 		formatting.ocamlformat,
 		formatting.google_java_format,
+		-- formatting.mix_format,
 		diagnostics.flake8,
 		diagnostics.eslint_d,
-		diagnostics.stylua,
+		diagnostics.credo,
 	},
 })
 

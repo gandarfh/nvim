@@ -6,7 +6,7 @@ project.setup({
 	-- detection_methods = { "lsp", "pattern" }, -- NOTE: lsp detection will get annoying with multiple langs in one project
 	detection_methods = { "pattern" },
 	-- patterns used to detect root dir, when **"pattern"** is in detection_methods
-	patterns = { ".git", "go.mod", "init.lua", "Makefile", "package.json" },
+	patterns = { ".git", "go.mod", "index.norg", "init.lua", "Makefile", "package.json" },
 
 	sync_root_with_cwd = true,
 
