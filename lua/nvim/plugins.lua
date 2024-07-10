@@ -112,6 +112,7 @@ return packer.startup(function(use)
 	-- use({ "elixir-tools/elixir-tools.nvim", tag = "stable", requires = { "nvim-lua/plenary.nvim" } })
 
 	-- Random
+	use({ "github/copilot.vim" })
 	use({ "norcalli/nvim-colorizer.lua" })
 	-- use({
 	-- 	"nvim-neorg/neorg",
