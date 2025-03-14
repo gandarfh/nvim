@@ -9,6 +9,9 @@ M.capabilities = vim.lsp.protocol.make_client_capabilities()
 M.capabilities.textDocument.completion.completionItem.snippetSupport = true
 M.capabilities = cmp_nvim_lsp.default_capabilities(M.capabilities)
 
+vim.opt.spelllang = { "pt_br", "en_us" }
+vim.opt.spell = true
+
 M.setup = function()
 	local signs = {
 
@@ -30,7 +33,9 @@ M.setup = function()
 		update_in_insert = true,
 		underline = true,
 		severity_sort = true,
-		float = { focusable = true, style = "minimal",
+		float = {
+			focusable = true,
+			style = "minimal",
 			border = "rounded",
 			source = "always",
 			header = "",

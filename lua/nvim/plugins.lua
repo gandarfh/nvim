@@ -95,6 +95,7 @@ return packer.startup(function(use)
 	use({ "lewis6991/gitsigns.nvim" })
 
 	-- DAP
+	use({ "nvim-neotest/nvim-nio" })
 	use({ "mfussenegger/nvim-dap" })
 	use({ "rcarriga/nvim-dap-ui" })
 	use({ "ravenxrz/DAPInstall.nvim" })

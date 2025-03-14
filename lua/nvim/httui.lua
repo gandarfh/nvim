@@ -36,11 +36,11 @@ local function getVisualText()
   return nil
 end
 
--- Recursively search for 'request_id' within a node
+-- Recursively search for 'requestId' within a node
 local function findRequestId(node)
   if type(node) == 'table' then
     for key, value in pairs(node) do
-      if key == 'request_id' then
+      if key == 'requestId' then
         return value
       elseif type(value) == 'table' then
         local result = findRequestId(value)
@@ -62,15 +62,15 @@ function copyToClipboard()
     return
   end
 
-  local request_id = findRequestId(data)
+  local requestId = findRequestId(data)
   local property = findProperty(data, getVisualText())
 
-  if request_id then
-    local result = string.format("{%% response '%s' '%s' %%}", property, request_id)
+  if requestId then
+    local result = string.format("{%% response '%s' '%s' %%}", property, requestId)
     vim.fn.setreg('+', result)
     print('Copied to clipboard:', result)
   else
-    print("Could not find 'request_id' in the JSON.")
+    print("Could not find 'requestId' in the JSON.")
   end
 end
 

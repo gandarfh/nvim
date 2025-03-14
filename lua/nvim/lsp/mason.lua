@@ -4,17 +4,18 @@ local servers = {
 	"html",
 	"gopls",
 	"rust_analyzer",
-	"ocamllsp",
+	-- "ocamllsp",
 	"clojure_lsp",
-	"tsserver",
+	-- "tsserver",
+	"ts_ls",
 	"pyright",
 	"bashls",
 	"jsonls",
 	"yamlls",
-	"fsautocomplete",
+	-- "fsautocomplete",
 	"prosemd_lsp",
 	"terraformls",
-	"hls",
+	-- "hls",
 	"tflint",
 	"elixirls",
 	"rescriptls",
@@ -72,3 +73,7 @@ lspconfig.elixirls.setup({})
 -- 		vim.lsp.buf.format()
 -- 	end,
 -- })
+
+lspconfig.somesass_ls.setup({
+	filetypes = { "sass", "scss", "less", "css" },
+})

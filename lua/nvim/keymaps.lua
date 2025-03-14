@@ -96,6 +96,17 @@ keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.curren
 keymap("x", "<leader>/", '<ESC><CMD>lua require("Comment.api").toggle.linewise(vim.fn.visualmode())<CR>')
 
 -- DAP
+local function open_repl_with_height()
+	-- Abre ou alterna o REPL
+	require("dap").repl.toggle()
+
+	-- Ajusta a altura do REPL
+	local repl_win = vim.fn.bufwinid("dap-repl")
+	if repl_win ~= -1 then
+		vim.api.nvim_win_set_height(repl_win, 15) -- Ajuste a altura conforme necessário
+	end
+end
+
 keymap("n", "<leader>db", "<cmd>lua require'dap'.toggle_breakpoint()<cr>", opts)
 keymap("n", "<leader>dc", "<cmd>lua require'dap'.continue()<cr>", opts)
 keymap("n", "<leader>di", "<cmd>lua require'dap'.step_into()<cr>", opts)
@@ -103,8 +114,10 @@ keymap("n", "<leader>do", "<cmd>lua require'dap'.step_over()<cr>", opts)
 keymap("n", "<leader>dO", "<cmd>lua require'dap'.step_out()<cr>", opts)
 keymap("n", "<leader>dr", "<cmd>lua require'dap'.repl.toggle()<cr>", opts)
 keymap("n", "<leader>dl", "<cmd>lua require'dap'.run_last()<cr>", opts)
-keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
+keymap("n", "<leader>dr", open_repl_with_height, opts)
 keymap("n", "<leader>dt", "<cmd>lua require'dap'.terminate()<cr>", opts)
+keymap("n", "<leader>du", "<cmd>lua require'dapui'.toggle()<cr>", opts)
+keymap("n", "<leader>dk", "<cmd>lua require('dap.ui.widgets').hover()<cr>", opts)
 
 -- toggle keymappings for venn using <leader>v
 keymap("n", "<leader>v", "<cmd>lua Toggle_venn()<CR><cr>", opts)

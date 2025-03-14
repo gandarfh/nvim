@@ -1,3 +1,5 @@
+local util = require 'lspconfig.util'
+
 local null_ls_status_ok, null_ls = pcall(require, "null-ls")
 if not null_ls_status_ok then
 	return
@@ -14,19 +16,42 @@ null_ls.setup({
 	sources = {
 		formatting.black.with({ extra_args = { "--fast" } }),
 		formatting.goimports,
+		formatting.gofmt,
 		formatting.stylua,
-		formatting.prettierd,
-		formatting.eslint_d,
+		-- formatting.prettierd,
+		-- formatting.prettier,
+		formatting.prettier_d_slim,
+		-- formatting.eslint_d,
+		formatting.eslint,
 		formatting.ocamlformat,
 		formatting.google_java_format,
 		-- formatting.mix_format,
+    -- diagnostics.gospel,
+    diagnostics.golangci_lint,
 		diagnostics.flake8,
 		diagnostics.eslint_d,
+		-- diagnostics.eslint,
 		diagnostics.credo,
 	},
 })
 
--- require 'lspconfig'.eslint.setup {
+
+require 'lspconfig'.eslint.setup {
+  -- Copied from nvim-lspconfig/lua/lspconfig/server_conigurations/eslint.js
+  root_dir = util.root_pattern(
+    '.eslintrc',
+    '.eslintrc.js',
+    '.eslintrc.cjs',
+    '.eslintrc.yaml',
+    '.eslintrc.yml',
+    '.eslintrc.json',
+    'eslint.config.js'
+  -- Disabled to prevent "No ESLint configuration found" exceptions
+  -- 'package.json',
+  ),
+}
+
+-- require 'lspconfig'.eslint_d.setup {
 --   -- Copied from nvim-lspconfig/lua/lspconfig/server_conigurations/eslint.js
 --   root_dir = util.root_pattern(
 --     '.eslintrc',
@@ -34,7 +59,8 @@ null_ls.setup({
 --     '.eslintrc.cjs',
 --     '.eslintrc.yaml',
 --     '.eslintrc.yml',
---     '.eslintrc.json'
+--     '.eslintrc.json',
+--     'eslint.config.js'
 --   -- Disabled to prevent "No ESLint configuration found" exceptions
 --   -- 'package.json',
 --   ),
