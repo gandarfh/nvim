@@ -18,7 +18,7 @@ local servers = {
 	-- "hls",
 	"tflint",
 	"elixirls",
-	"rescriptls",
+	-- "rescriptls",
 	"tailwindcss",
 }
 
@@ -67,12 +67,6 @@ end
 lspconfig.terraformls.setup({})
 
 lspconfig.elixirls.setup({})
--- vim.api.nvim_create_autocmd({ "BufWritePre" }, {
--- 	pattern = { "*.tf", "*.tfvars" },
--- 	callback = function()
--- 		vim.lsp.buf.format()
--- 	end,
--- })
 
 lspconfig.somesass_ls.setup({
 	filetypes = { "sass", "scss", "less", "css" },
