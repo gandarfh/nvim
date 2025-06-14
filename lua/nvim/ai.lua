@@ -8,9 +8,9 @@ require("avante").setup({
 		copilot = {
 			model = "claude-sonnet-4",
 			extra_request_body = {
-				temperature = 0,
-				max_tokens = 2000,
-				top_p = 1.0,
+				temperature = 0.2,
+				max_tokens = 6000,
+				top_p = 0.5,
 			},
 			timeout = 60000,
 		},
@@ -18,7 +18,7 @@ require("avante").setup({
 
 	chunks = {
 		max_size = 2000,
-		overlap = 200,
+		overlap = 300,
 	},
 
 	windows = {
