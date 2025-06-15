@@ -1,8 +1,3 @@
-local status_ok, telescope = pcall(require, "telescope")
-if not status_ok then
-	return
-end
-
 local actions = require("telescope.actions")
 
 local function get_pickers(actions)
@@ -72,7 +67,7 @@ local function get_pickers(actions)
 	}
 end
 
-telescope.setup({
+require("telescope").setup({
 	pickers = get_pickers(actions),
 	defaults = {
 		prompt_prefix = " ",

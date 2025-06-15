@@ -1,32 +1,26 @@
-local status_ok, spectre = pcall(require, "spectre")
-if not status_ok then
-  return
-end
+require("spectre").setup({
+	replace_engine = {
+		["sed"] = {
+			cmd = "sed",
+			args = {
+				"-i",
+				"",
+				"-E",
+			},
+			options = {
+				["ignore-case"] = {
+					value = "--ignore-case",
+					icon = "[I]",
+					desc = "ignore case",
+				},
+			},
+			warn = true,
+		},
+	},
 
-spectre.setup({
-
-  replace_engine = {
-    ["sed"] = {
-      cmd = "sed",
-      args = {
-        "-i",
-        "",
-        "-E",
-      },
-      options = {
-        ["ignore-case"] = {
-          value = "--ignore-case",
-          icon = "[I]",
-          desc = "ignore case",
-        },
-      },
-      warn = true,
-    },
-  },
-
-  default = {
-    replace = {
-      cmd = "sed",
-    },
-  },
+	default = {
+		replace = {
+			cmd = "sed",
+		},
+	},
 })
