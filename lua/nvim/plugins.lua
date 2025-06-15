@@ -144,24 +144,4 @@ return require("lazy").setup({
 		title_pos = "center",
 		backdrop = 60,
 	},
-	performance = {
-		cache = {
-			enabled = true,
-		},
-		reset_packpath = true,
-		rtp = {
-			reset = true,
-			paths = {},
-			disabled_plugins = {
-				"gzip",
-				"matchit",
-				"matchparen",
-				"netrwPlugin",
-				"tarPlugin",
-				"tohtml",
-				"tutor",
-				"zipPlugin",
-			},
-		},
-	},
 })
