@@ -46,5 +46,5 @@
   "vim-closetag": { "branch": "master", "commit": "d0a562f8bdb107a50595aefe53b1a690460c3822" },
   "vim-javascript": { "branch": "master", "commit": "b26c9edb3563e02f5c0b20580f7cf9743e95b157" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
-  "viscond": { "branch": "main", "commit": "dc5995ae05d0996a67c0fda3bfc7c301aaa9c689" }
+  "viscond": { "branch": "main", "commit": "28ccff49a50224d9484154ada4a7e23c65df479e" }
 }

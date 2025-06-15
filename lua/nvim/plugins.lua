@@ -16,89 +16,131 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup({
-	{ "nvim-lua/plenary.nvim" },
-	{ "windwp/nvim-autopairs" },
-	{ "numToStr/Comment.nvim" },
-	{ "JoosepAlviste/nvim-ts-context-commentstring" },
-	{ "kyazdani42/nvim-web-devicons" },
-	{ "kyazdani42/nvim-tree.lua" },
-	{ "akinsho/bufferline.nvim" },
-	{ "moll/vim-bbye" },
-	{ "nvim-lualine/lualine.nvim" },
-	{ "akinsho/toggleterm.nvim" },
-	{ "ahmedkhalf/project.nvim" },
-	{ "lukas-reineke/indent-blankline.nvim" },
-	{ "tpope/vim-surround" },
-	{ "windwp/nvim-spectre" },
+	-- Core dependencies
+	{ "nvim-lua/plenary.nvim", lazy = true },
+	{ "kyazdani42/nvim-web-devicons", lazy = true },
+	{ "MunifTanjim/nui.nvim", lazy = true },
 
-	-- Colorschemes
-	{ "gandarfh/viscond" },
+	-- UI and appearance
+	{ "gandarfh/viscond", lazy = true },
+	{ "nvim-lualine/lualine.nvim", event = "VeryLazy" },
+	{ "akinsho/bufferline.nvim", event = "VeryLazy" },
+	{ "lukas-reineke/indent-blankline.nvim", event = "BufRead" },
+	{ "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" },
 
-	-- cmp plugins
-	{ "hrsh7th/nvim-cmp" },
-	{ "hrsh7th/cmp-buffer" },
-	{ "hrsh7th/cmp-path" },
-	{ "hrsh7th/cmp-nvim-lsp" },
-	{ "hrsh7th/cmp-nvim-lua" },
-	{ "saadparwaiz1/cmp_luasnip" },
+	-- File management
+	{ "kyazdani42/nvim-tree.lua", cmd = "NvimTreeToggle" },
+	{ "ahmedkhalf/project.nvim", event = "VeryLazy" },
 
-	-- snippets
-	{ "L3MON4D3/LuaSnip" },
-	{ "rafamadriz/friendly-snippets" },
+	-- Editing enhancements
+	{ "windwp/nvim-autopairs", event = "InsertEnter" },
+	{ "numToStr/Comment.nvim", keys = { "gc", "gb" } },
+	{ "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
+	{ "tpope/vim-surround", keys = { "ys", "ds", "cs" } },
+	{ "windwp/nvim-spectre", cmd = "Spectre" },
+	{ "moll/vim-bbye", cmd = "Bdelete" },
 
-	-- LSP
-	{ "neovim/nvim-lspconfig" },
-	{ "williamboman/mason.nvim" },
-	{ "williamboman/mason-lspconfig.nvim" },
+	-- Fuzzy finder
+	{ "nvim-telescope/telescope.nvim", cmd = "Telescope" },
 
-	{ "nvimtools/none-ls-extras.nvim" },
-	{ "nvimtools/none-ls.nvim" },
+	-- LSP and completion
+	{ "neovim/nvim-lspconfig", event = { "BufReadPre", "BufNewFile" } },
+	{ "williamboman/mason.nvim", cmd = "Mason" },
+	{ "williamboman/mason-lspconfig.nvim", lazy = true },
+	{ "nvimtools/none-ls.nvim", event = { "BufReadPre", "BufNewFile" } },
+	{ "nvimtools/none-ls-extras.nvim", lazy = true },
 
-	-- Telescope
-	{ "nvim-telescope/telescope.nvim" },
+	{
+		"hrsh7th/nvim-cmp",
+		event = "InsertEnter",
+		dependencies = {
+			{ "hrsh7th/cmp-buffer", lazy = true },
+			{ "hrsh7th/cmp-path", lazy = true },
+			{ "hrsh7th/cmp-nvim-lsp", lazy = true },
+			{ "hrsh7th/cmp-nvim-lua", lazy = true },
+			{ "saadparwaiz1/cmp_luasnip", lazy = true },
+		},
+	},
+
+	-- Snippets
+	{
+		"L3MON4D3/LuaSnip",
+		event = "InsertEnter",
+		dependencies = {
+			{ "rafamadriz/friendly-snippets", lazy = true }
+		},
+		config = function()
+			require("luasnip.loaders.from_vscode").lazy_load()
+		end,
+	},
 
 	-- Treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
-		branch = "master",
-		lazy = false,
+		event = { "BufReadPost", "BufNewFile" },
 		build = ":TSUpdate",
+		dependencies = {
+			{
+				"windwp/nvim-ts-autotag",
+				ft = { "html", "xml", "jsx", "tsx", "vue", "svelte" }
+			}
+		},
 	},
 
 	-- Git
-	{ "lewis6991/gitsigns.nvim" },
+	{ "lewis6991/gitsigns.nvim", event = "BufRead" },
 
 	-- DAP
-	{ "nvim-neotest/nvim-nio" },
-	{ "mfussenegger/nvim-dap" },
-	{ "rcarriga/nvim-dap-ui" },
-	{ "ravenxrz/DAPInstall.nvim" },
-	{ "leoluz/nvim-dap-go" },
-
-	-- Frontend
-	{ "alvan/vim-closetag" },
-	{ "pangloss/vim-javascript" },
-	{ "windwp/nvim-ts-autotag" },
-
-	-- F#
-	{ "ionide/Ionide-vim" },
-
-	-- AI with avante + copilot
-	{ "github/copilot.vim" },
-	{ "MunifTanjim/nui.nvim" },
-	{ "HakonHarnes/img-clip.nvim" },
-	{ "zbirenbaum/copilot.lua" },
 	{
-		"yetone/avante.nvim",
-		-- event = "VeryLazy",
-		-- opts = {},
-		build = "make",
-		branch = "main",
+		"mfussenegger/nvim-dap",
+		keys = { "<leader>db", "<leader>dc", "<leader>di", "<leader>do" },
+		dependencies = {
+			"nvim-neotest/nvim-nio",
+			"rcarriga/nvim-dap-ui",
+			"ravenxrz/DAPInstall.nvim",
+			"leoluz/nvim-dap-go",
+		},
 	},
 
-	-- Random
-	{ "norcalli/nvim-colorizer.lua" },
-	{ "jbyuki/venn.nvim" },
+	-- Terminal
+	{ "akinsho/toggleterm.nvim", cmd = "ToggleTerm" },
+
+	-- Language specific
+	{ "alvan/vim-closetag", ft = { "html", "xml", "jsx", "tsx" } },
+	{ "pangloss/vim-javascript", ft = "javascript" },
+	{
+		"ionide/Ionide-vim",
+		ft = "fsharp",
+		enabled = function()
+			return vim.fn.executable("dotnet") == 1
+		end
+	},
+
+	-- AI tools
+	{
+		"github/copilot.vim",
+		event = "InsertEnter",
+		config = function()
+			vim.g.copilot_no_tab_map = true
+		end,
+	},
+	{
+		"zbirenbaum/copilot.lua",
+		event = "InsertEnter",
+		dependencies = { "github/copilot.vim" },
+	},
+	{
+		"yetone/avante.nvim",
+		event = "VeryLazy",
+		build = "make",
+		dependencies = {
+			"zbirenbaum/copilot.lua",
+			"HakonHarnes/img-clip.nvim",
+		},
+	},
+
+	-- Utilities
+	{ "jbyuki/venn.nvim", cmd = "VBox" },
 }, {
 	ui = {
 		border = "rounded",
@@ -109,5 +151,25 @@ return require("lazy").setup({
 		wrap = true,
 		title_pos = "center",
 		backdrop = 60,
+	},
+	performance = {
+		cache = {
+			enabled = true,
+		},
+		reset_packpath = true,
+		rtp = {
+			reset = true,
+			paths = {},
+			disabled_plugins = {
+				"gzip",
+				"matchit",
+				"matchparen",
+				"netrwPlugin",
+				"tarPlugin",
+				"tohtml",
+				"tutor",
+				"zipPlugin",
+			},
+		},
 	},
 })
