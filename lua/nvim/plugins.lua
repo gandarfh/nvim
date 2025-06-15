@@ -33,7 +33,7 @@ return require("lazy").setup({
 	{ "ahmedkhalf/project.nvim", event = "VeryLazy" },
 
 	-- Editing enhancements
-	{ "windwp/nvim-autopairs", event = "InsertEnter" },
+	{ "windwp/nvim-autopairs" },
 	{ "numToStr/Comment.nvim" },
 	-- { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
 	{ "tpope/vim-surround" },
@@ -44,10 +44,10 @@ return require("lazy").setup({
 	{ "nvim-telescope/telescope.nvim", cmd = "Telescope" },
 
 	-- LSP and completion
-	{ "neovim/nvim-lspconfig", event = { "BufReadPre", "BufNewFile" } },
+	{ "neovim/nvim-lspconfig" },
 	{ "williamboman/mason.nvim", cmd = "Mason" },
 	{ "williamboman/mason-lspconfig.nvim", lazy = true },
-	{ "nvimtools/none-ls.nvim", event = { "BufReadPre", "BufNewFile" } },
+	{ "nvimtools/none-ls.nvim" },
 	{ "nvimtools/none-ls-extras.nvim", lazy = true },
 
 	{
