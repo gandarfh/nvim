@@ -101,7 +101,7 @@ return require("lazy").setup({
 	-- Language specific
 	{ "windwp/nvim-ts-autotag" },
 	{ "alvan/vim-closetag" },
-	-- { "pangloss/vim-javascript", ft = "javascript" },
+	{ "pangloss/vim-javascript" },
 	-- {
 	-- 	"ionide/Ionide-vim",
 	-- 	ft = "fsharp",
