@@ -79,12 +79,6 @@ return require("lazy").setup({
 		"nvim-treesitter/nvim-treesitter",
 		event = { "BufReadPost", "BufNewFile" },
 		build = ":TSUpdate",
-		dependencies = {
-			{
-				"windwp/nvim-ts-autotag",
-				ft = { "html", "xml", "jsx", "tsx", "vue", "svelte" },
-			},
-		},
 	},
 
 	-- Git
@@ -105,7 +99,8 @@ return require("lazy").setup({
 	{ "akinsho/toggleterm.nvim", cmd = "ToggleTerm" },
 
 	-- Language specific
-	{ "alvan/vim-closetag", ft = { "html", "xml", "jsx", "tsx" } },
+	{ "windwp/nvim-ts-autotag" },
+	{ "alvan/vim-closetag" },
 	-- { "pangloss/vim-javascript", ft = "javascript" },
 	-- {
 	-- 	"ionide/Ionide-vim",
@@ -126,14 +121,12 @@ return require("lazy").setup({
 	{
 		"zbirenbaum/copilot.lua",
 		event = "InsertEnter",
-		dependencies = { "github/copilot.vim" },
 	},
 	{
 		"yetone/avante.nvim",
 		event = "VeryLazy",
 		build = "make",
 		dependencies = {
-			"zbirenbaum/copilot.lua",
 			"HakonHarnes/img-clip.nvim",
 		},
 	},
