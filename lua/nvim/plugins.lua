@@ -93,7 +93,6 @@ return require("lazy").setup({
 	-- DAP
 	{
 		"mfussenegger/nvim-dap",
-		keys = { "<leader>db", "<leader>dc", "<leader>di", "<leader>do" },
 		dependencies = {
 			"nvim-neotest/nvim-nio",
 			"rcarriga/nvim-dap-ui",
