@@ -34,6 +34,10 @@ require("avante").setup({
 		},
 	},
 
+	selector = {
+		provider = "telescope",
+	},
+
 	system_prompt = [[
 You are a concise and precise coding copilot.
 1. Always answer in Brazilian Portuguese.

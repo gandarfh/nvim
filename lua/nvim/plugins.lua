@@ -132,9 +132,9 @@ return packer.startup(function(use)
 
 	-- AI with avante + copilot
 	use({ "github/copilot.vim" })
-	use("stevearc/dressing.nvim")
+	-- use("stevearc/dressing.nvim")
 	use("MunifTanjim/nui.nvim")
-	use("MeanderingProgrammer/render-markdown.nvim")
+	-- use("MeanderingProgrammer/render-markdown.nvim")
 
 	-- Optional dependencies
 	-- use("nvim-tree/nvim-web-devicons") -- or use 'echasnovski/mini.icons'
