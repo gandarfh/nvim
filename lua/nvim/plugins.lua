@@ -1,148 +1,113 @@
-local fn = vim.fn
-
--- Automatically install packer
-local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-if fn.empty(fn.glob(install_path)) > 0 then
-	PACKER_BOOTSTRAP = fn.system({
-		"git",
-		"clone",
-		"--depth",
-		"1",
-		"https://github.com/wbthomason/packer.nvim",
-		install_path,
-	})
-	print("Installing packer close and reopen Neovim...")
-	vim.cmd([[packadd packer.nvim]])
-end -- Autocommand that reloads neovim whenever you save the plugins.lua file
-vim.cmd([[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerSync
-  augroup end
-]])
-
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-	return
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.fn.isdirectory(lazypath) then
+	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+	if vim.v.shell_error ~= 0 then
+		vim.api.nvim_echo({
+			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+			{ out, "WarningMsg" },
+			{ "\nPress any key to exit..." },
+		}, true, {})
+		vim.fn.getchar()
+		os.exit(1)
+	end
 end
 
--- Have packer use a popup window
-packer.init({
-	display = {
-		open_fn = function()
-			return require("packer.util").float({ border = "rounded" })
-		end,
-	},
-	git = {
-		clone_timeout = 300, -- Timeout, in seconds, for git clones
-	},
-})
+vim.opt.rtp:prepend(lazypath)
 
--- Install your plugins here
-return packer.startup(function(use)
-	-- My plugins here
-	use({ "wbthomason/packer.nvim" }) -- Have packer manage itself
-	use({ "nvim-lua/plenary.nvim" }) -- Useful lua functions used by lots of plugins
-	use({ "windwp/nvim-autopairs" }) -- Autopairs, integrates with both cmp and treesitter
-	use({ "numToStr/Comment.nvim" })
-	use({ "JoosepAlviste/nvim-ts-context-commentstring" })
-	use({ "kyazdani42/nvim-web-devicons" })
-	use({ "kyazdani42/nvim-tree.lua" })
-	use({ "akinsho/bufferline.nvim" })
-	use({ "moll/vim-bbye" })
-	use({ "nvim-lualine/lualine.nvim" })
-	use({ "akinsho/toggleterm.nvim" })
-	use({ "ahmedkhalf/project.nvim" })
-	use({ "lewis6991/impatient.nvim" })
-	use({ "lukas-reineke/indent-blankline.nvim" })
-	use({ "tpope/vim-surround" })
-	use({ "windwp/nvim-spectre" })
+return require("lazy").setup({
+	{ "nvim-lua/plenary.nvim" },
+	{ "windwp/nvim-autopairs" },
+	{ "numToStr/Comment.nvim" },
+	{ "JoosepAlviste/nvim-ts-context-commentstring" },
+	{ "kyazdani42/nvim-web-devicons" },
+	{ "kyazdani42/nvim-tree.lua" },
+	{ "akinsho/bufferline.nvim" },
+	{ "moll/vim-bbye" },
+	{ "nvim-lualine/lualine.nvim" },
+	{ "akinsho/toggleterm.nvim" },
+	{ "ahmedkhalf/project.nvim" },
+	{ "lukas-reineke/indent-blankline.nvim" },
+	{ "tpope/vim-surround" },
+	{ "windwp/nvim-spectre" },
 
 	-- Colorschemes
-	use({ "gandarfh/viscond" })
+	{ "gandarfh/viscond" },
 
 	-- cmp plugins
-	use({ "hrsh7th/nvim-cmp" }) -- The completion plugin
-	use({ "hrsh7th/cmp-buffer" }) -- buffer completions
-	use({ "hrsh7th/cmp-path" }) -- path completions
-	use({ "saadparwaiz1/cmp_luasnip" }) -- snippet completions
-	use({ "hrsh7th/cmp-nvim-lsp" })
-	use({ "hrsh7th/cmp-nvim-lua" })
+	{ "hrsh7th/nvim-cmp" },
+	{ "hrsh7th/cmp-buffer" },
+	{ "hrsh7th/cmp-path" },
+	{ "hrsh7th/cmp-nvim-lsp" },
+	{ "hrsh7th/cmp-nvim-lua" },
+	{ "saadparwaiz1/cmp_luasnip" },
 
 	-- snippets
-	use({ "L3MON4D3/LuaSnip" }) --snippet engine
-	use({ "rafamadriz/friendly-snippets" }) -- a bunch of snippets to use
+	{ "L3MON4D3/LuaSnip" },
+	{ "rafamadriz/friendly-snippets" },
 
 	-- LSP
-	use({ "williamboman/nvim-lsp-installer" }) -- simple to use language server installer
-	use({
-		"neovim/nvim-lspconfig",
-		opts = {
-			capabilities = {
-				workspace = {
-					didChangeWatchedFiles = {
-						dynamicRegistration = true,
-					},
-				},
-			},
-		},
-	}) -- enable LSP
-	use({ "williamboman/mason.nvim" })
-	use({ "williamboman/mason-lspconfig.nvim" })
+	{ "neovim/nvim-lspconfig" },
+	{ "williamboman/mason.nvim" },
+	{ "williamboman/mason-lspconfig.nvim" },
 
-	use({ "nvimtools/none-ls-extras.nvim" })
-	use({
-		"nvimtools/none-ls.nvim",
-		dependencies = {
-			"nvimtools/none-ls-extras.nvim",
-		},
-	})
+	{ "nvimtools/none-ls-extras.nvim" },
+	{ "nvimtools/none-ls.nvim" },
 
 	-- Telescope
-	use({ "nvim-telescope/telescope.nvim" })
+	{ "nvim-telescope/telescope.nvim" },
 
 	-- Treesitter
-	use({ "nvim-treesitter/nvim-treesitter" })
+	{
+		"nvim-treesitter/nvim-treesitter",
+		branch = "master",
+		lazy = false,
+		build = ":TSUpdate",
+	},
 
 	-- Git
-	use({ "lewis6991/gitsigns.nvim" })
+	{ "lewis6991/gitsigns.nvim" },
 
 	-- DAP
-	use({ "nvim-neotest/nvim-nio" })
-	use({ "mfussenegger/nvim-dap" })
-	use({ "rcarriga/nvim-dap-ui" })
-	use({ "ravenxrz/DAPInstall.nvim" })
-	use({ "leoluz/nvim-dap-go" })
+	{ "nvim-neotest/nvim-nio" },
+	{ "mfussenegger/nvim-dap" },
+	{ "rcarriga/nvim-dap-ui" },
+	{ "ravenxrz/DAPInstall.nvim" },
+	{ "leoluz/nvim-dap-go" },
 
 	-- Frontend
-	use({ "alvan/vim-closetag" })
-	use({ "pangloss/vim-javascript" })
-	use({ "windwp/nvim-ts-autotag" })
+	{ "alvan/vim-closetag" },
+	{ "pangloss/vim-javascript" },
+	{ "windwp/nvim-ts-autotag" },
 
 	-- F#
-	use({ "ionide/Ionide-vim" })
+	{ "ionide/Ionide-vim" },
 
 	-- AI with avante + copilot
-	use({ "github/copilot.vim" })
-	use("MunifTanjim/nui.nvim")
-
-	-- Optional dependencies
-	use("HakonHarnes/img-clip.nvim")
-	use("zbirenbaum/copilot.lua")
-	use({
+	{ "github/copilot.vim" },
+	{ "MunifTanjim/nui.nvim" },
+	{ "HakonHarnes/img-clip.nvim" },
+	{ "zbirenbaum/copilot.lua" },
+	{
 		"yetone/avante.nvim",
+		-- event = "VeryLazy",
+		-- opts = {},
+		build = "make",
 		branch = "main",
-		run = "make",
-	})
+	},
 
 	-- Random
-	use({ "norcalli/nvim-colorizer.lua" })
-	use({ "jbyuki/venn.nvim" })
-
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if PACKER_BOOTSTRAP then
-		require("packer").sync()
-	end
-end)
+	{ "norcalli/nvim-colorizer.lua" },
+	{ "jbyuki/venn.nvim" },
+}, {
+	ui = {
+		border = "rounded",
+		size = {
+			width = 0.8,
+			height = 0.8,
+		},
+		wrap = true,
+		title_pos = "center",
+		backdrop = 60,
+	},
+})
