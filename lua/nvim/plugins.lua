@@ -34,9 +34,9 @@ return require("lazy").setup({
 
 	-- Editing enhancements
 	{ "windwp/nvim-autopairs", event = "InsertEnter" },
-	{ "numToStr/Comment.nvim", keys = { "gc", "gb" } },
+	{ "numToStr/Comment.nvim" },
 	-- { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
-	{ "tpope/vim-surround", keys = { "ys", "ds", "cs" } },
+	{ "tpope/vim-surround" },
 	{ "windwp/nvim-spectre", cmd = "Spectre" },
 	-- { "moll/vim-bbye", cmd = "Bdelete" },
 
@@ -67,7 +67,7 @@ return require("lazy").setup({
 		"L3MON4D3/LuaSnip",
 		event = "InsertEnter",
 		dependencies = {
-			{ "rafamadriz/friendly-snippets", lazy = true }
+			{ "rafamadriz/friendly-snippets", lazy = true },
 		},
 		config = function()
 			require("luasnip.loaders.from_vscode").lazy_load()
@@ -82,8 +82,8 @@ return require("lazy").setup({
 		dependencies = {
 			{
 				"windwp/nvim-ts-autotag",
-				ft = { "html", "xml", "jsx", "tsx", "vue", "svelte" }
-			}
+				ft = { "html", "xml", "jsx", "tsx", "vue", "svelte" },
+			},
 		},
 	},
 
