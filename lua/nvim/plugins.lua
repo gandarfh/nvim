@@ -24,8 +24,8 @@ return require("lazy").setup({
 	-- UI and appearance
 	{ "gandarfh/viscond", lazy = true },
 	{ "nvim-lualine/lualine.nvim", event = "VeryLazy" },
-	{ "akinsho/bufferline.nvim", event = "VeryLazy" },
-	{ "lukas-reineke/indent-blankline.nvim", event = "BufRead" },
+	-- { "akinsho/bufferline.nvim", event = "VeryLazy" },
+	-- { "lukas-reineke/indent-blankline.nvim", event = "BufRead" },
 	{ "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" },
 
 	-- File management
@@ -35,10 +35,10 @@ return require("lazy").setup({
 	-- Editing enhancements
 	{ "windwp/nvim-autopairs", event = "InsertEnter" },
 	{ "numToStr/Comment.nvim", keys = { "gc", "gb" } },
-	{ "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
+	-- { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
 	{ "tpope/vim-surround", keys = { "ys", "ds", "cs" } },
 	{ "windwp/nvim-spectre", cmd = "Spectre" },
-	{ "moll/vim-bbye", cmd = "Bdelete" },
+	-- { "moll/vim-bbye", cmd = "Bdelete" },
 
 	-- Fuzzy finder
 	{ "nvim-telescope/telescope.nvim", cmd = "Telescope" },
@@ -107,14 +107,14 @@ return require("lazy").setup({
 
 	-- Language specific
 	{ "alvan/vim-closetag", ft = { "html", "xml", "jsx", "tsx" } },
-	{ "pangloss/vim-javascript", ft = "javascript" },
-	{
-		"ionide/Ionide-vim",
-		ft = "fsharp",
-		enabled = function()
-			return vim.fn.executable("dotnet") == 1
-		end
-	},
+	-- { "pangloss/vim-javascript", ft = "javascript" },
+	-- {
+	-- 	"ionide/Ionide-vim",
+	-- 	ft = "fsharp",
+	-- 	enabled = function()
+	-- 		return vim.fn.executable("dotnet") == 1
+	-- 	end
+	-- },
 
 	-- AI tools
 	{
