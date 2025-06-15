@@ -57,9 +57,7 @@ return packer.startup(function(use)
 	use({ "lewis6991/impatient.nvim" })
 	use({ "lukas-reineke/indent-blankline.nvim" })
 	use({ "tpope/vim-surround" })
-	-- use({ "Olical/conjure" })
 	use({ "windwp/nvim-spectre" })
-	use({ "folke/flash.nvim" })
 
 	-- Colorschemes
 	use({ "gandarfh/viscond" })
@@ -99,9 +97,7 @@ return packer.startup(function(use)
 		dependencies = {
 			"nvimtools/none-ls-extras.nvim",
 		},
-	}) -- for formatters and linters
-	use({ "rescript-lang/vim-rescript" })
-	-- use({ "nkrkv/nvim-treesitter-rescript" })
+	})
 
 	-- Telescope
 	use({ "nvim-telescope/telescope.nvim" })
@@ -127,17 +123,11 @@ return packer.startup(function(use)
 	-- F#
 	use({ "ionide/Ionide-vim" })
 
-	-- Elixir
-	-- use({ "elixir-tools/elixir-tools.nvim", tag = "stable", requires = { "nvim-lua/plenary.nvim" } })
-
 	-- AI with avante + copilot
 	use({ "github/copilot.vim" })
-	-- use("stevearc/dressing.nvim")
 	use("MunifTanjim/nui.nvim")
-	-- use("MeanderingProgrammer/render-markdown.nvim")
 
 	-- Optional dependencies
-	-- use("nvim-tree/nvim-web-devicons") -- or use 'echasnovski/mini.icons'
 	use("HakonHarnes/img-clip.nvim")
 	use("zbirenbaum/copilot.lua")
 	use({
@@ -148,12 +138,7 @@ return packer.startup(function(use)
 
 	-- Random
 	use({ "norcalli/nvim-colorizer.lua" })
-	-- use({
-	-- 	"nvim-neorg/neorg",
-	-- 	build = ":Neorg sync-parsers",
-	-- })
 	use({ "jbyuki/venn.nvim" })
-	-- use({ "andweeb/presence.nvim" })
 
 	-- Automatically set up your configuration after cloning packer.nvim
 	-- Put this at the end after all plugins
