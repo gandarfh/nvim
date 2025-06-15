@@ -16,6 +16,15 @@ require("avante").setup({
 		},
 	},
 
+	web_search_engine = {
+		provider = "searxng",
+		providers = {
+			searxng = {
+				api_url_name = "SEARXNG_API_URL",
+			},
+		},
+	},
+
 	chunks = {
 		max_size = 2000,
 		overlap = 300,
