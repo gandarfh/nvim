@@ -16,16 +16,35 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup({
+	{
+		"MunifTanjim/nui.nvim",
+	},
+
+	-- {
+	-- 	name = "httui-editor",
+	-- 	dir = "~/gandarfh/httui-editor.nvim",
+	-- 	config = function()
+	-- 		require("httui-editor").setup({})
+	-- 	end,
+	-- },
+
 	-- Core dependencies
 	{ "nvim-lua/plenary.nvim", lazy = true },
 	{ "kyazdani42/nvim-web-devicons", lazy = true },
 	{ "MunifTanjim/nui.nvim", lazy = true },
+	{
+		"folke/lazydev.nvim",
+		ft = "lua",
+		opts = {
+			library = {
+				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
+			},
+		},
+	},
 
 	-- UI and appearance
 	{ "gandarfh/viscond", lazy = true },
 	{ "nvim-lualine/lualine.nvim", event = "VeryLazy" },
-	-- { "akinsho/bufferline.nvim", event = "VeryLazy" },
-	-- { "lukas-reineke/indent-blankline.nvim", event = "BufRead" },
 	{ "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" },
 
 	-- File management
@@ -35,10 +54,8 @@ return require("lazy").setup({
 	-- Editing enhancements
 	{ "windwp/nvim-autopairs" },
 	{ "numToStr/Comment.nvim" },
-	-- { "JoosepAlviste/nvim-ts-context-commentstring", lazy = true },
 	{ "tpope/vim-surround" },
 	{ "windwp/nvim-spectre", cmd = "Spectre" },
-	-- { "moll/vim-bbye", cmd = "Bdelete" },
 
 	-- Fuzzy finder
 	{ "nvim-telescope/telescope.nvim", cmd = "Telescope" },
@@ -77,7 +94,8 @@ return require("lazy").setup({
 	-- Treesitter
 	{
 		"nvim-treesitter/nvim-treesitter",
-		event = { "BufReadPost", "BufNewFile" },
+		branch = "master",
+		lazy = false,
 		build = ":TSUpdate",
 	},
 
@@ -102,13 +120,6 @@ return require("lazy").setup({
 	{ "windwp/nvim-ts-autotag" },
 	{ "alvan/vim-closetag" },
 	{ "pangloss/vim-javascript" },
-	-- {
-	-- 	"ionide/Ionide-vim",
-	-- 	ft = "fsharp",
-	-- 	enabled = function()
-	-- 		return vim.fn.executable("dotnet") == 1
-	-- 	end
-	-- },
 
 	-- AI tools
 	{

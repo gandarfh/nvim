@@ -9,7 +9,6 @@ null_ls.setup({
     null_ls.builtins.diagnostics.golangci_lint,
 
     null_ls.builtins.formatting.black.with({ extra_args = { "--fast" } }),
-    -- null_ls.builtins.diagnostics.flake8,
     null_ls.builtins.formatting.stylua,
     null_ls.builtins.formatting.ocamlformat,
     null_ls.builtins.formatting.google_java_format,

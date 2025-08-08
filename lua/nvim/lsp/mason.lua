@@ -1,5 +1,7 @@
 local servers = {
 	"lua_ls",
+	"protols",
+  "clangd",
 	"cssls",
 	"html",
 	"gopls",

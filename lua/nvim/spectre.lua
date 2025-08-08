@@ -4,7 +4,6 @@ require("spectre").setup({
 			cmd = "sed",
 			args = {
 				"-i",
-				"",
 				"-E",
 			},
 			options = {
