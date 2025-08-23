@@ -70,6 +70,17 @@ require("avante").setup({
 		provider = "telescope",
 	},
 
+	system_prompt = function()
+		local hub = require("mcphub").get_hub_instance()
+		return hub and hub:get_active_servers_prompt() or ""
+	end,
+	-- Using function prevents requiring mcphub before it's loaded
+	custom_tools = function()
+		return {
+			require("mcphub.extensions.avante").mcp_tool(),
+		}
+	end,
+
 	system_prompt = [[
 You are a concise and precise coding copilot.
 1. Always answer in Brazilian Portuguese.
@@ -79,4 +90,12 @@ You are a concise and precise coding copilot.
 5. Git commits must follow Conventional Commits in English with short messages (e.g., "feat(parser): add JSON support").
 6. Keep responses tightly scoped to the context.
 ]],
+})
+
+require("mcphub").setup({
+	extensions = {
+		avante = {
+			make_slash_commands = true, -- make /slash commands from MCP server prompts
+		},
+	},
 })
