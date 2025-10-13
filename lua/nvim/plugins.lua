@@ -1,168 +1,234 @@
+-- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.fn.isdirectory(lazypath) then
-	local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-	local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
-	if vim.v.shell_error ~= 0 then
-		vim.api.nvim_echo({
-			{ "Failed to clone lazy.nvim:\n", "ErrorMsg" },
-			{ out, "WarningMsg" },
-			{ "\nPress any key to exit..." },
-		}, true, {})
-		vim.fn.getchar()
-		os.exit(1)
-	end
+if not (vim.uv or vim.loop).fs_stat(lazypath) then
+  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  if vim.v.shell_error ~= 0 then
+    vim.api.nvim_echo({
+      { "Failed to clone lazy.nvim:\n", "ErrorMsg" },
+      { out,                            "WarningMsg" },
+      { "\nPress any key to exit..." },
+    }, true, {})
+    vim.fn.getchar()
+    os.exit(1)
+  end
 end
 
 vim.opt.rtp:prepend(lazypath)
 
 return require("lazy").setup({
-	{
-		"MunifTanjim/nui.nvim",
-	},
+  {
+    "MunifTanjim/nui.nvim",
+  },
 
-	-- {
-	-- 	name = "httui-editor",
-	-- 	dir = "~/gandarfh/httui-editor.nvim",
-	-- 	config = function()
-	-- 		require("httui-editor").setup({})
-	-- 	end,
-	-- },
+  -- {
+  -- 	name = "httui-editor",
+  -- 	dir = "~/gandarfh/httui-editor.nvim",
+  -- 	config = function()
+  -- 		require("httui-editor").setup({})
+  -- 	end,
+  -- },
 
-	-- Core dependencies
-	{ "nvim-lua/plenary.nvim", lazy = true },
-	{ "kyazdani42/nvim-web-devicons", lazy = true },
-	{ "MunifTanjim/nui.nvim", lazy = true },
-	{
-		"folke/lazydev.nvim",
-		ft = "lua",
-		opts = {
-			library = {
-				{ path = "${3rd}/luv/library", words = { "vim%.uv" } },
-			},
-		},
-	},
+  -- Core dependencies
+  { "nvim-lua/plenary.nvim",        lazy = true },
+  { "kyazdani42/nvim-web-devicons", lazy = true },
+  { "MunifTanjim/nui.nvim",         lazy = true },
+  {
+    "folke/lazydev.nvim",
+    ft = "lua",
+    opts = {
+      library = {
+        { path = "${3rd}/luv/library", words = { "vim%.uv" } },
+      },
+    },
+  },
 
-	-- UI and appearance
-	{ "gandarfh/viscond", lazy = true },
-	{ "nvim-lualine/lualine.nvim", event = "VeryLazy" },
-	{ "norcalli/nvim-colorizer.lua", cmd = "ColorizerToggle" },
+  -- UI and appearance
+  { "gandarfh/viscond",                  lazy = true },
+  { "nvim-lualine/lualine.nvim",         event = "VeryLazy" },
+  { "norcalli/nvim-colorizer.lua",       cmd = "ColorizerToggle" },
 
-	-- File management
-	{ "kyazdani42/nvim-tree.lua", cmd = "NvimTreeToggle" },
-	{ "ahmedkhalf/project.nvim", event = "VeryLazy" },
+  -- File management
+  { "kyazdani42/nvim-tree.lua",          cmd = "NvimTreeToggle" },
+  { "ahmedkhalf/project.nvim",           event = "VeryLazy" },
 
-	-- Editing enhancements
-	{ "windwp/nvim-autopairs" },
-	{ "numToStr/Comment.nvim" },
-	{ "tpope/vim-surround" },
-	{ "windwp/nvim-spectre", cmd = "Spectre" },
+  -- Editing enhancements
+  { "windwp/nvim-autopairs" },
+  { "numToStr/Comment.nvim" },
+  { "tpope/vim-surround" },
+  { "windwp/nvim-spectre",               cmd = "Spectre" },
 
-	-- Fuzzy finder
-	{ "nvim-telescope/telescope.nvim", cmd = "Telescope" },
+  -- Fuzzy finder
+  { "nvim-telescope/telescope.nvim",     cmd = "Telescope" },
 
-	-- LSP and completion
-	{ "neovim/nvim-lspconfig" },
-	{ "williamboman/mason.nvim", cmd = "Mason" },
-	{ "williamboman/mason-lspconfig.nvim", lazy = true },
-	{ "nvimtools/none-ls.nvim" },
-	{ "nvimtools/none-ls-extras.nvim", lazy = true },
+  -- LSP and completion
+  { "neovim/nvim-lspconfig" },
+  { "williamboman/mason.nvim",           cmd = "Mason" },
+  { "williamboman/mason-lspconfig.nvim", lazy = true },
+  { "nvimtools/none-ls.nvim" },
+  { "nvimtools/none-ls-extras.nvim",     lazy = true },
 
-	{
-		"hrsh7th/nvim-cmp",
-		event = "InsertEnter",
-		dependencies = {
-			{ "hrsh7th/cmp-buffer", lazy = true },
-			{ "hrsh7th/cmp-path", lazy = true },
-			{ "hrsh7th/cmp-nvim-lsp", lazy = true },
-			{ "hrsh7th/cmp-nvim-lua", lazy = true },
-			{ "saadparwaiz1/cmp_luasnip", lazy = true },
-		},
-	},
+  {
+    "hrsh7th/nvim-cmp",
+    event = "InsertEnter",
+    dependencies = {
+      { "hrsh7th/cmp-buffer",       lazy = true },
+      { "hrsh7th/cmp-path",         lazy = true },
+      { "hrsh7th/cmp-nvim-lsp",     lazy = true },
+      { "hrsh7th/cmp-nvim-lua",     lazy = true },
+      { "saadparwaiz1/cmp_luasnip", lazy = true },
+    },
+  },
 
-	-- Snippets
-	{
-		"L3MON4D3/LuaSnip",
-		event = "InsertEnter",
-		dependencies = {
-			{ "rafamadriz/friendly-snippets", lazy = true },
-		},
-		config = function()
-			require("luasnip.loaders.from_vscode").lazy_load()
-		end,
-	},
+  -- Snippets
+  {
+    "L3MON4D3/LuaSnip",
+    event = "InsertEnter",
+    dependencies = {
+      { "rafamadriz/friendly-snippets", lazy = true },
+    },
+    config = function()
+      require("luasnip.loaders.from_vscode").lazy_load()
+    end,
+  },
 
-	-- Treesitter
-	{
-		"nvim-treesitter/nvim-treesitter",
-		branch = "master",
-		lazy = false,
-		build = ":TSUpdate",
-	},
+  -- Treesitter
+  {
+    "nvim-treesitter/nvim-treesitter",
+    branch = "master",
+    lazy = false,
+    build = ":TSUpdate",
+  },
 
-	-- Git
-	{ "lewis6991/gitsigns.nvim", event = "BufRead" },
+  -- Git
+  { "lewis6991/gitsigns.nvim", event = "BufRead" },
 
-	-- DAP
-	{
-		"mfussenegger/nvim-dap",
-		dependencies = {
-			"nvim-neotest/nvim-nio",
-			"rcarriga/nvim-dap-ui",
-			"ravenxrz/DAPInstall.nvim",
-			"leoluz/nvim-dap-go",
-		},
-	},
+  -- DAP
+  {
+    "mfussenegger/nvim-dap",
+    dependencies = {
+      "nvim-neotest/nvim-nio",
+      "rcarriga/nvim-dap-ui",
+      "ravenxrz/DAPInstall.nvim",
+      "leoluz/nvim-dap-go",
+    },
+  },
 
-	-- Terminal
-	{ "akinsho/toggleterm.nvim", cmd = "ToggleTerm" },
+  -- Terminal
+  { "akinsho/toggleterm.nvim", cmd = "ToggleTerm" },
 
-	-- Language specific
-	{ "windwp/nvim-ts-autotag" },
-	{ "alvan/vim-closetag" },
-	{ "pangloss/vim-javascript" },
+  -- Language specific
+  { "windwp/nvim-ts-autotag" },
+  { "alvan/vim-closetag" },
+  { "pangloss/vim-javascript" },
 
-	-- AI tools
-	{
-		"github/copilot.vim",
-		event = "InsertEnter",
-		config = function()
-			vim.g.copilot_no_tab_map = true
-		end,
-	},
-	{
-		"zbirenbaum/copilot.lua",
-		event = "InsertEnter",
-	},
-	{
-		"yetone/avante.nvim",
-		event = "VeryLazy",
-		build = "make",
-		dependencies = {
-			"HakonHarnes/img-clip.nvim",
-		},
-	},
-	{
-		"ravitemer/mcphub.nvim",
-		dependencies = {
-			"nvim-lua/plenary.nvim",
-		},
-		build = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
-		config = function()
-			require("mcphub").setup()
-		end,
-	},
+  -- AI tools
+  {
+    "github/copilot.vim",
+    event = "InsertEnter",
+    config = function()
+      vim.g.copilot_no_tab_map = true
+    end,
+  },
+  -- {
+  --   "zbirenbaum/copilot.lua",
+  --   event = "InsertEnter",
+  -- },
 
-	-- Utilities
-	{ "jbyuki/venn.nvim", cmd = "VBox" },
+  {
+    "folke/sidekick.nvim",
+    opts = {},
+    keys = {
+      {
+        "<tab>",
+        function()
+          -- if there is a next edit, jump to it, otherwise apply it if any
+          if not require("sidekick").nes_jump_or_apply() then
+            return "<Tab>" -- fallback to normal tab
+          end
+        end,
+        mode = { "i", "n" },
+        expr = true,
+        desc = "Goto/Apply Next Edit Suggestion",
+      },
+      {
+        "<c-.>",
+        function() require("sidekick.cli").toggle() end,
+        desc = "Sidekick Toggle",
+        mode = { "n", "t", "i", "x" },
+      },
+      {
+        "<leader>aa",
+        function() require("sidekick.cli").toggle() end,
+        desc = "Sidekick Toggle CLI",
+      },
+      {
+        "<leader>as",
+        function() require("sidekick.cli").select() end,
+        -- Or to select only installed tools:
+        -- require("sidekick.cli").select({ filter = { installed = true } })
+        desc = "Select CLI",
+      },
+      {
+        "<leader>ad",
+        function() require("sidekick.cli").close() end,
+        desc = "Detach a CLI Session",
+      },
+      {
+        "<leader>at",
+        function() require("sidekick.cli").send({ msg = "{this}" }) end,
+        mode = { "x", "n" },
+        desc = "Send This",
+      },
+      {
+        "<leader>af",
+        function() require("sidekick.cli").send({ msg = "{file}" }) end,
+        desc = "Send File",
+      },
+      {
+        "<leader>av",
+        function() require("sidekick.cli").send({ msg = "{selection}" }) end,
+        mode = { "x" },
+        desc = "Send Visual Selection",
+      },
+      {
+        "<leader>ap",
+        function() require("sidekick.cli").prompt() end,
+        mode = { "n", "x" },
+        desc = "Sidekick Select Prompt",
+      },
+      -- Example of a keybinding to open Claude directly
+      {
+        "<leader>ac",
+        function() require("sidekick.cli").toggle({ name = "claude", focus = true }) end,
+        desc = "Sidekick Toggle Claude",
+      },
+    },
+  },
+
+
+  {
+    "ravitemer/mcphub.nvim",
+    dependencies = {
+      "nvim-lua/plenary.nvim",
+    },
+    build = "npm install -g mcp-hub@latest", -- Installs `mcp-hub` node binary globally
+    config = function()
+      require("mcphub").setup()
+    end,
+  },
+
+  -- Utilities
+  { "jbyuki/venn.nvim", cmd = "VBox" },
 }, {
-	ui = {
-		border = "rounded",
-		size = {
-			width = 0.8,
-			height = 0.8,
-		},
-		wrap = true,
-		title_pos = "center",
-		backdrop = 60,
-	},
+  ui = {
+    border = "rounded",
+    size = {
+      width = 0.8,
+      height = 0.8,
+    },
+    wrap = true,
+    title_pos = "center",
+    backdrop = 60,
+  },
 })

@@ -21,7 +21,3 @@ require("nvim.autotag")
 require("nvim.httui")
 require("nvim.colorscheme")
 require("nvim.ai")
-
--- require("nvim.fsharp")
--- require("nvim.neorg")
--- require("nvim.elixir")
