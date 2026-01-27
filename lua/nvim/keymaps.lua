@@ -86,10 +86,8 @@ keymap("n", "<leader>f", ":Telescope find_files<CR>", opts)
 keymap("n", "<leader>st", ":Telescope live_grep<CR>", opts)
 keymap("n", "<leader>sb", ":Telescope buffers<CR>", opts)
 
--- ToggleTerm
-keymap("n", "<leader>gg", "<cmd>lua _LAZYGIT_TOGGLE()<CR>", opts)
-keymap("n", "<leader>a", "<cmd>lua _HTTUI_TOGGLE()<CR>", opts)
-keymap("n", "<leader>m", "<cmd>lua _GLOW_TOGGLE()<CR>", opts)
+
+-- ToggleTerm keybinds are now in plugins.lua to ensure lazy loading works
 
 -- Comment
 keymap("n", "<leader>/", "<cmd>lua require('Comment.api').toggle.linewise.current()<CR>", opts)

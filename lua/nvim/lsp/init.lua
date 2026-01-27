@@ -1,4 +1,4 @@
 require("lspconfig")
 require("nvim.lsp.mason")
 require("nvim.lsp.handlers").setup()
-require("nvim.lsp.null-ls")
+-- null-ls is loaded separately via lazy.nvim

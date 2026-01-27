@@ -6,7 +6,7 @@ M.capabilities = cmp_nvim_lsp.default_capabilities()
 
 -- Spell checking
 vim.opt.spelllang = { "pt_br", "en_us" }
-vim.opt.spell = true
+vim.opt.spell = false
 
 -- Setup de diagnósticos
 M.setup = function()
